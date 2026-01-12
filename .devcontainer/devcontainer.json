@@ -17,7 +17,6 @@
 		}
 	},
 	"mounts": [
-		"source=${localWorkspaceFolder}/../../Settings,target=/Settings,type=bind,consistency=cached"
 	]
 
 }
