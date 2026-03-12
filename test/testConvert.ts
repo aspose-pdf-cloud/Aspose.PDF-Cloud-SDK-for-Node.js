@@ -29,10 +29,12 @@ var fs = require('fs');
 describe("Convert Tests", () => {
 
     const simplePdf = "4pages.pdf";
+    const simplePdf5 = "5pages.pdf";
     const xfaPdf = "PdfWithXfaForm.pdf";
 
     before( async ()=> {
         await BaseTest.uploadFile(simplePdf);
+        await BaseTest.uploadFile(simplePdf5);
         await BaseTest.uploadFile(xfaPdf);
     });
 
@@ -563,6 +565,47 @@ describe("Convert Tests", () => {
                 var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf);
 
                 return BaseTest.getPdfApi().putPdfInRequestToMobiXml(outPath, null, data)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+    });
+    
+    describe("To Aps Tests", () => {
+
+        const resFileName = "result.xml";
+        const outPath = BaseTest.remoteTempFolder + "/" + resFileName;
+        
+        describe("GetPdfInStorageToAps Test", () => {
+
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().getPdfInStorageToAps(simplePdf5, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutPdfInStorageToAps Test", () => {
+
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().putPdfInStorageToAps(simplePdf5, outPath, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+
+        describe("PutPdfInRequestToAps Test", () => {
+
+            it("should return response with code 200", async () => {
+
+                var data = fs.readFileSync(BaseTest.localTestDataFolder + "/" + simplePdf5);
+
+                return BaseTest.getPdfApi().putPdfInRequestToAps(outPath, null, data)
                     .then((result) => {
                         assert.equal(result.response.statusCode, 200);
                 });

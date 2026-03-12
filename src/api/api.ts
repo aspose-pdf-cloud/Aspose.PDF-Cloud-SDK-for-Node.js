@@ -1893,6 +1893,56 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Convert APS file (located on storage) to PDF format and return resulting file in response. 
+     * @param srcPath Full source filename (ex. /folder1/folder2/template.xps)
+     * @param storage The document storage.
+     */
+    public async getApsInStorageToPdf (srcPath: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/create/aps';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'srcPath' is not null or undefined
+        if (srcPath === null || srcPath === undefined) {
+            throw new Error('Required parameter srcPath was null or undefined when calling getApsInStorageToPdf.');
+        }
+
+        if (srcPath !== undefined && null !== srcPath) {
+            localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Read document bookmark.
      * @param name The document name.
      * @param bookmarkPath The bookmark path.
@@ -8766,6 +8816,58 @@ export class PdfApi {
 
         if (dontOptimize !== undefined && null !== dontOptimize) {
             localVarQueryParameters['dontOptimize'] = ObjectSerializer.serialize(dontOptimize, "boolean");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            encoding: null,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "Buffer");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Converts PDF document (located on storage) to APS format and returns resulting file in response content
+     * @param name The document name.
+     * @param folder The document folder.
+     * @param storage The document storage.
+     */
+    public async getPdfInStorageToAps (name: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/convert/aps'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling getPdfInStorageToAps.');
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
         }
 
         if (storage !== undefined && null !== storage) {
@@ -16975,6 +17077,68 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Convert APS file (located on storage) to PDF format and upload resulting file to storage. 
+     * @param name The document name.
+     * @param srcPath Full source filename (ex. /folder1/folder2/template.xps)
+     * @param dstFolder The destination document folder.
+     * @param storage The document storage.
+     */
+    public async putApsInStorageToPdf (name: string, srcPath: string, dstFolder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/create/aps'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putApsInStorageToPdf.');
+        }
+
+        // verify required parameter 'srcPath' is not null or undefined
+        if (srcPath === null || srcPath === undefined) {
+            throw new Error('Required parameter srcPath was null or undefined when calling putApsInStorageToPdf.');
+        }
+
+        if (srcPath !== undefined && null !== srcPath) {
+            localVarQueryParameters['srcPath'] = ObjectSerializer.serialize(srcPath, "string");
+        }
+
+        if (dstFolder !== undefined && null !== dstFolder) {
+            localVarQueryParameters['dstFolder'] = ObjectSerializer.serialize(dstFolder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Update document bookmark.
      * @param name The document name.
      * @param bookmarkPath The bookmark path.
@@ -20505,6 +20669,64 @@ export class PdfApi {
 
     /**
      * 
+     * @summary Converts PDF document (in request content) to APS format and uploads resulting file to storage.
+     * @param outPath Full resulting filename (ex. /folder1/folder2/result.aps)
+     * @param storage The document storage.
+     * @param file A file to be converted.
+     */
+    public async putPdfInRequestToAps (outPath: string, storage?: string, file?: Buffer) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/convert/aps';
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'outPath' is not null or undefined
+        if (outPath === null || outPath === undefined) {
+            throw new Error('Required parameter outPath was null or undefined when calling putPdfInRequestToAps.');
+        }
+
+        if (outPath !== undefined && null !== outPath) {
+            localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
+        if (file !== undefined) {
+            localVarFormParams['file'] = file;
+            fileData = file;
+        }
+        localVarUseFormData = true;
+        
+
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
      * @summary Converts PDF document (in request content) to DOC format and uploads resulting file to storage.
      * @param outPath Full resulting filename (ex. /folder1/folder2/result.doc)
      * @param addReturnToLineEnd Add return to line end.
@@ -21595,6 +21817,68 @@ export class PdfApi {
         localVarUseFormData = true;
         
 
+        let localVarRequestOptions: localVarRequest.Options = {
+            method: 'PUT',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        if (Object.keys(localVarFormParams).length) {
+            if (localVarUseFormData) {
+                (<any>localVarRequestOptions).formData = localVarFormParams;
+            } else {
+                localVarRequestOptions.form = localVarFormParams;
+            }
+        }
+        const response = await invokeApiMethod(localVarRequestOptions, this.configuration, false, fileData);
+        const result =  ObjectSerializer.deserialize(response.body, "AsposeResponse");
+        return Promise.resolve({body: result, response});
+    }
+
+
+    /**
+     * 
+     * @summary Converts PDF document (located on storage) to APS format and uploads resulting file to storage
+     * @param name The document name.
+     * @param outPath Full resulting filename (ex. /folder1/folder2/result.aps)
+     * @param folder The document folder.
+     * @param storage The document storage.
+     */
+    public async putPdfInStorageToAps (name: string, outPath: string, folder?: string, storage?: string) : Promise<{ response: http.IncomingMessage; body: AsposeResponse;  }> {
+        const localVarPath = this.basePath + '/pdf/{name}/convert/aps'
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarFormParams: any = {};
+
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling putPdfInStorageToAps.');
+        }
+
+        // verify required parameter 'outPath' is not null or undefined
+        if (outPath === null || outPath === undefined) {
+            throw new Error('Required parameter outPath was null or undefined when calling putPdfInStorageToAps.');
+        }
+
+        if (outPath !== undefined && null !== outPath) {
+            localVarQueryParameters['outPath'] = ObjectSerializer.serialize(outPath, "string");
+        }
+
+        if (folder !== undefined && null !== folder) {
+            localVarQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+        }
+
+        if (storage !== undefined && null !== storage) {
+            localVarQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+        }
+
+
+        let localVarUseFormData = false;
+        let fileData = null;
         let localVarRequestOptions: localVarRequest.Options = {
             method: 'PUT',
             qs: localVarQueryParameters,
