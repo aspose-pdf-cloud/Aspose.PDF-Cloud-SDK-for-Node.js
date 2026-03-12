@@ -358,6 +358,39 @@ describe("Convert To PDF Tests", () => {
         });
     });
     
+    describe("Aps To PDF Tests", () => {
+                                    
+        const name = "5pages.aps";
+        const resFileName = "fromAps.pdf";
+        const srcPath = BaseTest.remoteTempFolder + "/" + name;
+        
+        before( async ()=> {
+            await BaseTest.uploadFile(name);
+        });
+
+        describe("GetApsInStorageToPdf Test", () => {
+
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().getApsInStorageToPdf(srcPath)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+        
+        describe("PutApsInStorageToPdf Test", () => {
+
+            it("should return response with code 200", async () => {
+
+                return BaseTest.getPdfApi().putApsInStorageToPdf(resFileName, srcPath, BaseTest.remoteTempFolder)
+                    .then((result) => {
+                        assert.equal(result.response.statusCode, 200);
+                });
+            });
+        });
+    });
+    
     describe("PS To PDF Tests", () => {
                                         
         const name = "Typography.PS";
