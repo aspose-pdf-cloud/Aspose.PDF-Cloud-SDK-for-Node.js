@@ -7,6 +7,8 @@
   ```bash
   node UsesCases/Attachments/get/getAttachmentAndSave.js
   ```
+- *[Attachments/add/appendAttachment.js](Attachments/add/appendAttachment.js)* – Creates a new AttachmentInfo object and appends it to a document using postAddDocumentAttachment.
+- *[Attachments/get/getAttachmentAndSave.js](Attachments/get/getAttachmentAndSave.js)* – Retrieves all document attachments with getDocumentAttachments, gets a specific attachment by index with getDocumentAttachmentByIndex, and downloads it with getDownloadDocumentAttachmentByIndex.
 
 #### Bookmarks
 - **[Bookmarks/add/appendBookmarks.js](Bookmarks/add/appendBookmarks.js)** – Adds a new bookmark with custom properties to a PDF document.
@@ -31,7 +33,6 @@
   ```bash
   node UsesCases/ChangeLayout/changeLayoutLaunch.js
   ```
-- *[ChangeLayout/changeLayoutHelper.js](ChangeLayout/changeLayoutHelper.js)* – Helper module providing common functions for PDF layout manipulation tasks.
 - *[ChangeLayout/cropPage.js](ChangeLayout/cropPage.js)* – Crops a specified region from a PDF page and saves it as a new document.
 - *[ChangeLayout/resizeDocumentAllPages.js](ChangeLayout/resizeDocumentAllPages.js)* – Resizes all pages of a PDF document to specified dimensions.
 - *[ChangeLayout/rotatePageStdAngle.js](ChangeLayout/rotatePageStdAngle.js)* – Rotates specified pages of a PDF by a standard angle.
@@ -42,7 +43,6 @@
   node UsesCases/Compares/comparesLaunch.js
   ```
 - *[Compares/comparePdfDocuments.js](Compares/comparePdfDocuments.js)* – Core logic for comparing two PDF files and generating a difference document.
-- *[Compares/comparesHelper.js](Compares/comparesHelper.js)* – Utility module for file upload and download operations during PDF comparison.
 
 #### CompressDocument
 - **[CompressDocument/compressPdf.js](CompressDocument/compressPdf.js)** – Compresses a PDF document by optimizing images, fonts, and removing unused objects.
@@ -55,10 +55,7 @@
   ```bash
   node UsesCases/CreateDocument/createPdf.js
   ```
-- **[CreateDocument/createPdfSimple.js](CreateDocument/createPdfSimple.js)** – Creates a simple, empty PDF document.
-  ```bash
-  node UsesCases/CreateDocument/createPdfSimple.js
-  ```
+- *[CreateDocument/createPdfSimple.js](CreateDocument/createPdfSimple.js)* – Creates an empty PDF document using a simple PUT request and downloads it locally.
 
 #### EncryptDecrypt
 - **[EncryptDecrypt/decryptDocument.js](EncryptDecrypt/decryptDocument.js)** – Decrypts a password-protected PDF document.
@@ -68,24 +65,6 @@
 - **[EncryptDecrypt/encryptDocument.js](EncryptDecrypt/encryptDocument.js)** – Encrypts a PDF document with user and owner passwords using a specified algorithm.
   ```bash
   node UsesCases/EncryptDecrypt/encryptDocument.js
-  ```
-
-#### HeaderFooter
-- **[HeaderFooter/appendImageFooter.js](HeaderFooter/appendImageFooter.js)** – Adds an image-based footer to all pages of a PDF document.
-  ```bash
-  node UsesCases/HeaderFooter/appendImageFooter.js
-  ```
-- **[HeaderFooter/appendImageHeader.js](HeaderFooter/appendImageHeader.js)** – Adds an image-based header to all pages of a PDF document.
-  ```bash
-  node UsesCases/HeaderFooter/appendImageHeader.js
-  ```
-- **[HeaderFooter/appendTextFooter.js](HeaderFooter/appendTextFooter.js)** – Appends a text footer to all pages of a PDF.
-  ```bash
-  node UsesCases/HeaderFooter/appendTextFooter.js
-  ```
-- **[HeaderFooter/appendTextHeader.js](HeaderFooter/appendTextHeader.js)** – Appends a text header to all pages of a PDF.
-  ```bash
-  node UsesCases/HeaderFooter/appendTextHeader.js
   ```
 
 #### Links
@@ -141,10 +120,7 @@
   ```bash
   node UsesCases/Pages/stamp/pageAddImageStamp.js
   ```
-- **[Pages/wordsCount/wordsCount.js](Pages/wordsCount/wordsCount.js)** – Counts the number of words on each page of a PDF document.
-  ```bash
-  node UsesCases/Pages/wordsCount/wordsCount.js
-  ```
+- *[Pages/wordsCount/wordsCount.js](Pages/wordsCount/wordsCount.js)* – Retrieves and displays the word count per page for a PDF document.
 
 #### Parser
 - **[Parser/parserLaunch.js](Parser/parserLaunch.js)** – Executes multiple PDF parsing operations to extract forms, images, tables, and text boxes.
@@ -156,7 +132,6 @@
 - *[Parser/parserGetImages.js](Parser/parserGetImages.js)* – Extracts images from a specified page of a PDF and saves them as PNG files.
 - *[Parser/parserGetTables.js](Parser/parserGetTables.js)* – Extracts table data from a PDF and saves it as a JSON file.
 - *[Parser/parserGetTextBoxes.js](Parser/parserGetTextBoxes.js)* – Extracts text box field data from a PDF and saves it as a JSON file.
-- *[Parser/parserHelper.js](Parser/parserHelper.js)* – Helper module providing common file operations for PDF parsing tasks.
 
 #### Signatures
 - **[Signatures/addDocumentSignature.js](Signatures/addDocumentSignature.js)** – Adds a digital signature field with a PKCS#7 certificate to a PDF document.
@@ -175,6 +150,10 @@
   ```bash
   node UsesCases/Signatures/verifySignature.js
   ```
+- *[Signatures/addDocumentSignature.js](Signatures/addDocumentSignature.js)* – Invokes postSignatureField to add a PKCS7 signature to a PDF document.
+- *[Signatures/getDocumentSignatures.js](Signatures/getDocumentSignatures.js)* – Invokes getDocumentSignatureFields to list all signature fields in a PDF document.
+- *[Signatures/replaceDocumentSignature.js](Signatures/replaceDocumentSignature.js)* – Invokes putSignatureField to replace an existing signature field in a PDF document.
+- *[Signatures/verifySignature.js](Signatures/verifySignature.js)* – Invokes getVerifySignature to check the validity of a signature field in a PDF document.
 
 #### Split
 - **[Split/splitPages.js](Split/splitPages.js)** – Splits a PDF document into individual pages, saving each as a separate file.
