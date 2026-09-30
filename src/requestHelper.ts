@@ -95,7 +95,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
     //headers
     sa.set("User-Agent", "pdf nodejs sdk");
     sa.set("x-aspose-client", "nodejs sdk");  
-    sa.set("x-aspose-client-version", "26.7.0");
+    sa.set("x-aspose-client-version", "26.9.0");
 
     if (!requestOptions.headers) {
         requestOptions.headers = {};
@@ -133,7 +133,7 @@ async function invokeApiMethodInternal(requestOptions: request.Options, confgura
                         bodyContent = JSON.parse(bodyContent.toString("utf8"));
                     }
 
-                    const result = ObjectSerializer.deserialize(bodyContent, "SaaSposeResponse");
+                    const result = ObjectSerializer.deserialize(bodyContent, "AsposeResponse");
                     reject({ message: result.message, code: response.status });
                 } catch (error) {
                     reject({ message: "Error while parse server error: " + error });
