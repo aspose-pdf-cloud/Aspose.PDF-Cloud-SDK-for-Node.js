@@ -1,66 +1,79 @@
-import credentials from "./../../../settings/credentials.json"  with { type: "json" };
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import credentials from "./../../../settings/credentials.json" with { type: "json" };
+import fs from "node:fs/promises";
+import path from "node:path";
 import { PdfApi } from "asposepdfcloud/src/api/api.js";
 
 const configParams = {
-    LOCAL_FOLDER: "testData",
-    PDF_DOCUMENT_NAME: "PageNumberStamp.pdf", 
-    LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    PAGE_NUMBER: 2,             // Your document page number...
-    STAMP_ID: "GE5TAOZQ",       // Your Stamp Id to be deleted...
+  LOCAL_FOLDER: "testData",
+  PDF_DOCUMENT_NAME: "PageNumberStamp.pdf",
+  LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
+  PAGE_NUMBER: 2, // Your document page number...
+  STAMP_ID: "GE5TAOZQ", // Your Stamp Id to be deleted...
 };
 
 const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfStamps = {
-    async uploadDocument () {
-        const fileNamePath = path.join(configParams.LOCAL_FOLDER, configParams.PDF_DOCUMENT_NAME);
-        const pdfFileData = await fs.readFile(fileNamePath);
-        await pdfApi.uploadFile(configParams.PDF_DOCUMENT_NAME, pdfFileData);
-        console.log("File '" + configParams.PDF_DOCUMENT_NAME + "' successfully uploaded!");
-    },
-                        
-    async downloadResult () {
-        const changedPdfData = await pdfApi.downloadFile(configParams.PDF_DOCUMENT_NAME);
-        const filePath = path.join(configParams.LOCAL_FOLDER, configParams.LOCAL_RESULT_DOCUMENT_NAME);
-        await fs.writeFile(filePath, changedPdfData.body);
-        console.log("Downloaded: " + filePath);
-    },
+  async uploadDocument() {
+    const fileNamePath = path.join(
+      configParams.LOCAL_FOLDER,
+      configParams.PDF_DOCUMENT_NAME,
+    );
+    const pdfFileData = await fs.readFile(fileNamePath);
+    await pdfApi.uploadFile(configParams.PDF_DOCUMENT_NAME, pdfFileData);
+    console.log(
+      "File '" + configParams.PDF_DOCUMENT_NAME + "' successfully uploaded!",
+    );
+  },
 
-    async deletePageStamps () {
-        const addResult = await pdfApi.deletePageStamps(configParams.PDF_DOCUMENT_NAME, configParams.PAGE_NUMBER);
+  async downloadResult() {
+    const changedPdfData = await pdfApi.downloadFile(
+      configParams.PDF_DOCUMENT_NAME,
+    );
+    const filePath = path.join(
+      configParams.LOCAL_FOLDER,
+      configParams.LOCAL_RESULT_DOCUMENT_NAME,
+    );
+    await fs.writeFile(filePath, changedPdfData.body);
+    console.log("Downloaded: " + filePath);
+  },
 
-        if (addResult.body.code == 200) {
-            console.log("Pdf page stamps on page #" + configParams.PAGE_NUMBER + " deleted!");
-            return true;
-        }
-        else
-            console.error("Unexpected error : can't get pages!!!");
-    },
+  async deletePageStamps() {
+    const addResult = await pdfApi.deletePageStamps(
+      configParams.PDF_DOCUMENT_NAME,
+      configParams.PAGE_NUMBER,
+    );
 
-    async deletePageStampById (stamp_id) {
-        const addResult = await pdfApi.deleteStamp(configParams.PDF_DOCUMENT_NAME, stamp_id);
+    if (addResult.body.code === 200) {
+      console.log(
+        "Pdf page stamps on page #" + configParams.PAGE_NUMBER + " deleted!",
+      );
+      return true;
+    } else console.error("Unexpected error : can't get pages!!!");
+  },
 
-        if (addResult.body.code == 200) {
-            console.log("Pdf stamps " + stamp_id + " deleted!");
-            return true;
-        }
-        else
-            console.error("Unexpected error : can't get pages!!!");
-    },
+  async deletePageStampById(stamp_id) {
+    const addResult = await pdfApi.deleteStamp(
+      configParams.PDF_DOCUMENT_NAME,
+      stamp_id,
+    );
 
-}
+    if (addResult.body.code === 200) {
+      console.log("Pdf stamps " + stamp_id + " deleted!");
+      return true;
+    } else console.error("Unexpected error : can't get pages!!!");
+  },
+};
 
 async function main() {
-    try {
-        await pdfStamps.uploadDocument();
-        await pdfStamps.deletePageStampById(configParams.STAMP_ID);
-        await pdfStamps.deletePageStamps();
-        await pdfStamps.downloadResult();
-    } catch (error) {
-        console.error("Error:", error.message);
-    }
+  try {
+    await pdfStamps.uploadDocument();
+    await pdfStamps.deletePageStampById(configParams.STAMP_ID);
+    await pdfStamps.deletePageStamps();
+    await pdfStamps.downloadResult();
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
 }
 
 main();

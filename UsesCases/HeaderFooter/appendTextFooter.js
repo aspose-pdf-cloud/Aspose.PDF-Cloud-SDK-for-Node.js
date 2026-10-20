@@ -8,54 +8,65 @@
 // 8. Perform some action after successful addition
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./../../settings/credentials.json"  with { type: "json" };
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import credentials from "./../../settings/credentials.json" with { type: "json" };
+import fs from "node:fs/promises";
+import path from "node:path";
 import { PdfApi } from "asposepdfcloud";
 import { TextFooter } from "asposepdfcloud/src/models/textFooter.js";
 import { HorizontalAlignment } from "asposepdfcloud/src/models/horizontalAlignment.js";
 
 const configParams = {
-    LOCAL_FOLDER: "testData",
-    PDF_DOCUMENT_NAME: "sample.pdf",
-    LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    FOOTER_VALUE: "New Footer Value",
+  LOCAL_FOLDER: "testData",
+  PDF_DOCUMENT_NAME: "sample.pdf",
+  LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
+  FOOTER_VALUE: "New Footer Value",
 };
 
 const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfHederFooter = {
-    async uploadDocument() {
-        const pdfFilePath = path.join(configParams.LOCAL_FOLDER, configParams.PDF_DOCUMENT_NAME);
-        const pdfFileData = await fs.readFile(pdfFilePath);
-        await pdfApi.uploadFile(configParams.PDF_DOCUMENT_NAME, pdfFileData);
-    },
+  async uploadDocument() {
+    const pdfFilePath = path.join(
+      configParams.LOCAL_FOLDER,
+      configParams.PDF_DOCUMENT_NAME,
+    );
+    const pdfFileData = await fs.readFile(pdfFilePath);
+    await pdfApi.uploadFile(configParams.PDF_DOCUMENT_NAME, pdfFileData);
+  },
 
-    async downloadResult() {
-        const changedPdfData = await pdfApi.downloadFile(configParams.PDF_DOCUMENT_NAME);
-        const filePath = path.join(configParams.LOCAL_FOLDER, configParams.LOCAL_RESULT_DOCUMENT_NAME);
-        await fs.writeFile(filePath, changedPdfData.body);
-        console.log("Downloaded: " + filePath);
-    },
+  async downloadResult() {
+    const changedPdfData = await pdfApi.downloadFile(
+      configParams.PDF_DOCUMENT_NAME,
+    );
+    const filePath = path.join(
+      configParams.LOCAL_FOLDER,
+      configParams.LOCAL_RESULT_DOCUMENT_NAME,
+    );
+    await fs.writeFile(filePath, changedPdfData.body);
+    console.log("Downloaded: " + filePath);
+  },
 
-    async adddTextFooter () {
-        const textFooter = new TextFooter();
-        textFooter.background = true;
-        textFooter.value = configParams.FOOTER_VALUE;
-        textFooter.horizontalAlignment = HorizontalAlignment.Center;
+  async adddTextFooter() {
+    const textFooter = new TextFooter();
+    textFooter.background = true;
+    textFooter.value = configParams.FOOTER_VALUE;
+    textFooter.horizontalAlignment = HorizontalAlignment.Center;
 
-        await pdfApi.postDocumentTextFooter(configParams.PDF_DOCUMENT_NAME, textFooter);
-    },
-}
+    await pdfApi.postDocumentTextFooter(
+      configParams.PDF_DOCUMENT_NAME,
+      textFooter,
+    );
+  },
+};
 
 async function main() {
-    try {
-        await pdfHederFooter.uploadDocument();
-        await pdfHederFooter.adddTextFooter();
-        await pdfHederFooter.downloadResult();
-    } catch (error) {
-        console.error("Error:", error.message);
-    }
+  try {
+    await pdfHederFooter.uploadDocument();
+    await pdfHederFooter.adddTextFooter();
+    await pdfHederFooter.downloadResult();
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
 }
 
 main();

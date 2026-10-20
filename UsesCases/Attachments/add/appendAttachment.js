@@ -7,68 +7,74 @@
 // 7. Download result file after appending Attachment
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./../../settings/credentials.json"  with { type: "json" };
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import credentials from "./../../settings/credentials.json" with { type: "json" };
+import fs from "node:fs/promises";
+import path from "node:path";
 import { PdfApi } from "asposepdfcloud";
-import { AttachmentInfo } from "asposepdfcloud/src/models/attachmentInfo.js"; 
+import { AttachmentInfo } from "asposepdfcloud/src/models/attachmentInfo.js";
 
 const configParams = {
-    LOCAL_FOLDER: "testData",
-    PDF_DOCUMENT_NAME: "sample.pdf",
-    LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    NEW_ATTACHMENT_FILE: "sample.pdf",
-    NEW_ATTACHMENT_MIME: "application/pdf",
-    NEW_ATTACHMENT_DECRIPTION: 'This is a sample attachment',
-    PAGE_NUMBER: 2,
+  LOCAL_FOLDER: "testData",
+  PDF_DOCUMENT_NAME: "sample.pdf",
+  LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
+  NEW_ATTACHMENT_FILE: "sample.pdf",
+  NEW_ATTACHMENT_MIME: "application/pdf",
+  NEW_ATTACHMENT_DECRIPTION: "This is a sample attachment",
+  PAGE_NUMBER: 2,
 };
 
 const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
-
 const pdfAttachments = {
-    async uploadFile (fileName) {
-        const fileNamePath = path.join(configParams.LOCAL_FOLDER, fileName);
-        const pdfFileData = await fs.readFile(fileNamePath);
-        await pdfApi.uploadFile(fileName, pdfFileData);
-    },
-                        
-    async downloadResult () {
-        const changedPdfData = await pdfApi.downloadFile(configParams.PDF_DOCUMENT_NAME);
-        const filePath = path.join(configParams.LOCAL_FOLDER, configParams.LOCAL_RESULT_DOCUMENT_NAME);
-        await fs.writeFile(filePath, changedPdfData.body);
-        console.log("Downloaded: " + filePath);
-    },
-    
-    async uploadDocument () {
-        await this.uploadFile(configParams.PDF_DOCUMENT_NAME);
-    },
+  async uploadFile(fileName) {
+    const fileNamePath = path.join(configParams.LOCAL_FOLDER, fileName);
+    const pdfFileData = await fs.readFile(fileNamePath);
+    await pdfApi.uploadFile(fileName, pdfFileData);
+  },
 
-    async appendAttachment() {
+  async downloadResult() {
+    const changedPdfData = await pdfApi.downloadFile(
+      configParams.PDF_DOCUMENT_NAME,
+    );
+    const filePath = path.join(
+      configParams.LOCAL_FOLDER,
+      configParams.LOCAL_RESULT_DOCUMENT_NAME,
+    );
+    await fs.writeFile(filePath, changedPdfData.body);
+    console.log("Downloaded: " + filePath);
+  },
 
-        const newAttachment = new AttachmentInfo();
-        newAttachment.path = configParams.NEW_ATTACHMENT_FILE;
-        newAttachment.description = configParams.NEW_ATTACHMENT_DECRIPTION;
-        newAttachment.name = configParams.NEW_ATTACHMENT_FILE;
-        
-        const response = await pdfApi.postAddDocumentAttachment(configParams.PDF_DOCUMENT_NAME, newAttachment);
-        const { code } = response.body;
+  async uploadDocument() {
+    await this.uploadFile(configParams.PDF_DOCUMENT_NAME);
+  },
 
-        if (code === 200) {
-            console.log("Appended attachment successfulll");
-        }
-    },
+  async appendAttachment() {
+    const newAttachment = new AttachmentInfo();
+    newAttachment.path = configParams.NEW_ATTACHMENT_FILE;
+    newAttachment.description = configParams.NEW_ATTACHMENT_DECRIPTION;
+    newAttachment.name = configParams.NEW_ATTACHMENT_FILE;
+
+    const response = await pdfApi.postAddDocumentAttachment(
+      configParams.PDF_DOCUMENT_NAME,
+      newAttachment,
+    );
+    const { code } = response.body;
+
+    if (code === 200) {
+      console.log("Appended attachment successfulll");
+    }
+  },
 };
 
 async function main() {
-    try {
-        await pdfAttachments.uploadDocument();
-        await pdfAttachments.uploadFile(configParams.NEW_ATTACHMENT_FILE);
-        await pdfAttachments.appendAttachment();
-        await pdfAttachments.downloadResult();
-    } catch (error) {
-        console.error("Error:", error.message);
-    }
+  try {
+    await pdfAttachments.uploadDocument();
+    await pdfAttachments.uploadFile(configParams.NEW_ATTACHMENT_FILE);
+    await pdfAttachments.appendAttachment();
+    await pdfAttachments.downloadResult();
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
 }
 
 main();

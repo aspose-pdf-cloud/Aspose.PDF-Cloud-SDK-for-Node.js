@@ -5,76 +5,93 @@
 // 6. Perform some action after successful retrieving the Link Annotation from document
 // All values of variables starting with "YOUR_****" should be replaced by real user values
 
-import credentials from "./../../../settings/credentials.json"  with { type: "json" };
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import credentials from "./../../../settings/credentials.json" with { type: "json" };
+import fs from "node:fs/promises";
+import path from "node:path";
 import { PdfApi } from "asposepdfcloud";
 
 const configParams = {
-    LOCAL_FOLDER: "testData",
-    PDF_DOCUMENT_NAME: "sample.pdf",
-    LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
-    PAGE_NUMBER: 2,     // Your document page number...
+  LOCAL_FOLDER: "testData",
+  PDF_DOCUMENT_NAME: "sample.pdf",
+  LOCAL_RESULT_DOCUMENT_NAME: "output_sample.pdf",
+  PAGE_NUMBER: 2, // Your document page number...
 };
 
 const pdfApi = new PdfApi(credentials.client_id, credentials.client_secret);
 
 const pdfPages = {
-    async uploadDocument () {
-        const fileNamePath = path.join(configParams.LOCAL_FOLDER, configParams.PDF_DOCUMENT_NAME);
-        const pdfFileData = await fs.readFile(fileNamePath);
-        await pdfApi.uploadFile(configParams.PDF_DOCUMENT_NAME, pdfFileData);
-    },
-        
-    async downloadResult () {
-        const changedPdfData = await pdfApi.downloadFile(configParams.PDF_DOCUMENT_NAME);
-        const filePath = path.join(configParams.LOCAL_FOLDER, configParams.LOCAL_RESULT_DOCUMENT_NAME);
-        await fs.writeFile(filePath, changedPdfData.body);
-        console.log("Downloaded: " + filePath);
-    },
+  async uploadDocument() {
+    const fileNamePath = path.join(
+      configParams.LOCAL_FOLDER,
+      configParams.PDF_DOCUMENT_NAME,
+    );
+    const pdfFileData = await fs.readFile(fileNamePath);
+    await pdfApi.uploadFile(configParams.PDF_DOCUMENT_NAME, pdfFileData);
+  },
 
-    async getPagesInfo () {
-        const resultPages = await pdfApi.getPages(configParams.PDF_DOCUMENT_NAME);
+  async downloadResult() {
+    const changedPdfData = await pdfApi.downloadFile(
+      configParams.PDF_DOCUMENT_NAME,
+    );
+    const filePath = path.join(
+      configParams.LOCAL_FOLDER,
+      configParams.LOCAL_RESULT_DOCUMENT_NAME,
+    );
+    await fs.writeFile(filePath, changedPdfData.body);
+    console.log("Downloaded: " + filePath);
+  },
 
-        if (resultPages.body.code == 200 && resultPages.body.pages.list) {
-            this.showPages(resultPages.body.pages.list, "pages");
-            return resultPages.body.pages.list;
-        }
-        else
-            console.error("Unexpected error : can't get pages!!!");
-    },
+  async getPagesInfo() {
+    const resultPages = await pdfApi.getPages(configParams.PDF_DOCUMENT_NAME);
 
-    async getPageInfo (pageNumber) {
-        const resultPages = await pdfApi.getPage(configParams.PDF_DOCUMENT_NAME, pageNumber);
+    if (resultPages.body.code === 200 && resultPages.body.pages.list) {
+      this.showPages(resultPages.body.pages.list, "pages");
+      return resultPages.body.pages.list;
+    } else console.error("Unexpected error : can't get pages!!!");
+  },
 
-        if (resultPages.body.code == 200 && resultPages.body.page) {
-            this.showPages( [ resultPages.body.page ], "page");
-            return resultPages.body.page;
-        }
-        else
-            console.error("Unexpected error : can't get pages!!!");
-    },
+  async getPageInfo(pageNumber) {
+    const resultPages = await pdfApi.getPage(
+      configParams.PDF_DOCUMENT_NAME,
+      pageNumber,
+    );
 
-    showPages (pages, prefix) {
-        if (Array.isArray(pages) && pages.length > 0)
-        {
-            pages.forEach(function(page) {
-                console.log(prefix +" => id: '" + page.id + "', lLx: '" + page.rectangle.lLX + "', lLY: '" + page.rectangle.lLY + "', uRX: '" + page.rectangle.uRX + "', uRY: '" + page.rectangle.uRY + "'");
-            });
-        }
-        else
-            console.error("showPages() error: array of pages is empty!")
-    },
-}
+    if (resultPages.body.code === 200 && resultPages.body.page) {
+      this.showPages([resultPages.body.page], "page");
+      return resultPages.body.page;
+    } else console.error("Unexpected error : can't get pages!!!");
+  },
+
+  showPages(pages, prefix) {
+    if (Array.isArray(pages) && pages.length > 0) {
+      pages.forEach(function (page) {
+        console.log(
+          prefix +
+            " => id: '" +
+            page.id +
+            "', lLx: '" +
+            page.rectangle.lLX +
+            "', lLY: '" +
+            page.rectangle.lLY +
+            "', uRX: '" +
+            page.rectangle.uRX +
+            "', uRY: '" +
+            page.rectangle.uRY +
+            "'",
+        );
+      });
+    } else console.error("showPages() error: array of pages is empty!");
+  },
+};
 
 async function main() {
-    try {
-        await pdfPages.uploadDocument();
-        await pdfPages.getPagesInfo();
-        await pdfPages.getPageInfo(configParams.PAGE_NUMBER);
-    } catch (error) {
-        console.error("Error:", error.message);
-    }
+  try {
+    await pdfPages.uploadDocument();
+    await pdfPages.getPagesInfo();
+    await pdfPages.getPageInfo(configParams.PAGE_NUMBER);
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
 }
 
 main();
