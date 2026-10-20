@@ -67,6 +67,24 @@
   node UsesCases/EncryptDecrypt/encryptDocument.js
   ```
 
+#### HeaderFooter
+- **[HeaderFooter/appendTextHeader.js](HeaderFooter/appendTextHeader.js)** – Adds a text header to the pages of a PDF document.
+  ```bash
+  node UsesCases/HeaderFooter/appendTextHeader.js
+  ```
+- **[HeaderFooter/appendTextFooter.js](HeaderFooter/appendTextFooter.js)** – Adds a text footer to the pages of a PDF document.
+  ```bash
+  node UsesCases/HeaderFooter/appendTextFooter.js
+  ```
+- **[HeaderFooter/appendImageHeader.js](HeaderFooter/appendImageHeader.js)** – Adds an image header to the pages of a PDF document.
+  ```bash
+  node UsesCases/HeaderFooter/appendImageHeader.js
+  ```
+- **[HeaderFooter/appendImageFooter.js](HeaderFooter/appendImageFooter.js)** – Adds an image footer to the pages of a PDF document.
+  ```bash
+  node UsesCases/HeaderFooter/appendImageFooter.js
+  ```
+
 #### Links
 - **[Links/add/appendLink.js](Links/add/appendLink.js)** – Inserts a new hyperlink annotation onto a specified page of a PDF.
   ```bash
