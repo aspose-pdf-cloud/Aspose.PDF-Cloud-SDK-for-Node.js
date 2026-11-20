@@ -1893,7 +1893,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert APS file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert APS file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xps)
      * @param storage The document storage.
      */
@@ -4428,7 +4428,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert EPUB file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert EPUB file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.epub)
      * @param storage The document storage.
      */
@@ -5075,7 +5075,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert HTML file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert HTML file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.zip)
      * @param htmlFileName Name of HTML file in ZIP.
      * @param height Page height
@@ -5747,7 +5747,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Import from XML file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Import from XML file (located on storage) to PDF format and return resulting file in response.
      * @param name The document name.
      * @param xmlFilePath Full source filename (ex. /folder1/folder2/template.xml)
      * @param storage The document storage.
@@ -6045,7 +6045,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert MD file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert MD file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.md)
      * @param storage The document storage.
      */
@@ -6095,7 +6095,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert MHT file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert MHT file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.mht)
      * @param height Page height
      * @param width Page width
@@ -8744,7 +8744,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert PCL file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert PCL file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.pcl)
      * @param storage The document storage.
      */
@@ -8794,7 +8794,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert PDFA file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert PDFA file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.pdf)
      * @param dontOptimize If set, document resources will not be optimized.
      * @param storage The document storage.
@@ -10166,7 +10166,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert PS file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert PS file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.ps)
      * @param storage The document storage.
      */
@@ -10924,7 +10924,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert SVG file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert SVG file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.svg)
      * @param adjustPageSize Adjust page size
      * @param height Page height
@@ -11073,7 +11073,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert TeX file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert TeX file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.tex)
      * @param storage The document storage.
      */
@@ -11469,7 +11469,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert web page to PDF format and return resulting file in response. 
+     * @summary Convert web page to PDF format and return resulting file in response.
      * @param url Source url
      * @param height Page height
      * @param width Page width
@@ -11658,7 +11658,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert XML file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert XML file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xml)
      * @param xslFilePath Full XSL source filename (ex. /folder1/folder2/template.xsl)
      * @param storage The document storage.
@@ -11827,7 +11827,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert XPS file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert XPS file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xps)
      * @param storage The document storage.
      */
@@ -11877,7 +11877,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert XslFo file (located on storage) to PDF format and return resulting file in response. 
+     * @summary Convert XslFo file (located on storage) to PDF format and return resulting file in response.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xslfo)
      * @param storage The document storage.
      */
@@ -13832,7 +13832,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert HTML file (zip archive in request content) to PDF format and return resulting file in response. 
+     * @summary Convert HTML file (zip archive in request content) to PDF format and return resulting file in response.
      * @param htmlFileName Name of HTML file in ZIP.
      * @param height Page height
      * @param width Page width
@@ -17077,7 +17077,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert APS file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert APS file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xps)
      * @param dstFolder The destination document folder.
@@ -17926,7 +17926,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert EPUB file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert EPUB file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.epub)
      * @param storage The document storage.
@@ -18488,7 +18488,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert HTML file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert HTML file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.zip)
      * @param htmlFileName Name of HTML file in ZIP.
@@ -18886,7 +18886,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert image file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert image file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param imageTemplates ImageTemplatesRequestImage templates
      * @param dstFolder The destination document folder.
@@ -19691,7 +19691,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert MD file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert MD file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.md)
      * @param storage The document storage.
@@ -19812,7 +19812,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert MHT file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert MHT file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.mht)
      * @param height Page height
@@ -20540,7 +20540,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert PCL file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert PCL file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.pcl)
      * @param dstFolder The destination document folder.
@@ -20602,7 +20602,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert PDFA file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert PDFA file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.pdf)
      * @param dstFolder The destination document folder.
@@ -23326,7 +23326,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert PS file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert PS file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.ps)
      * @param dstFolder The destination document folder.
@@ -24472,7 +24472,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert SVG file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert SVG file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.svg)
      * @param adjustPageSize Adjust page size
@@ -24640,7 +24640,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert TeX file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert TeX file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.tex)
      * @param dstFolder The destination document folder.
@@ -25025,7 +25025,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert web page to PDF format and upload resulting file to storage. 
+     * @summary Convert web page to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param url Source url
      * @param height Page height
@@ -25242,7 +25242,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert XML file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert XML file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xml)
      * @param xslFilePath Full XSL source filename (ex. /folder1/folder2/template.xsl)
@@ -25309,7 +25309,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert XPS file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert XPS file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xps)
      * @param dstFolder The destination document folder.
@@ -25371,7 +25371,7 @@ export class PdfApi {
 
     /**
      * 
-     * @summary Convert XslFo file (located on storage) to PDF format and upload resulting file to storage. 
+     * @summary Convert XslFo file (located on storage) to PDF format and upload resulting file to storage.
      * @param name The document name.
      * @param srcPath Full source filename (ex. /folder1/folder2/template.xpsfo)
      * @param dstFolder The destination document folder.
