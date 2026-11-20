@@ -16712,7 +16712,7 @@ export class PdfApi {
      * @param folder The document folder.
      * @param password Base64 encoded password.
      */
-    public async postSplitRangePdfDocument (name: string, options?: SplitRangePdfOptions, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: SplitResultResponse;  }> {
+    public async postSplitRangePdfDocument (name: string, options: SplitRangePdfOptions, storage?: string, folder?: string, password?: string) : Promise<{ response: http.IncomingMessage; body: SplitResultResponse;  }> {
         const localVarPath = this.basePath + '/pdf/{name}/splitrangepdf'
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)).replace('%2F', '/'));
         let localVarQueryParameters: any = {};
@@ -16722,6 +16722,11 @@ export class PdfApi {
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new Error('Required parameter name was null or undefined when calling postSplitRangePdfDocument.');
+        }
+
+        // verify required parameter 'options' is not null or undefined
+        if (options === null || options === undefined) {
+            throw new Error('Required parameter options was null or undefined when calling postSplitRangePdfDocument.');
         }
 
         if (storage !== undefined && null !== storage) {
