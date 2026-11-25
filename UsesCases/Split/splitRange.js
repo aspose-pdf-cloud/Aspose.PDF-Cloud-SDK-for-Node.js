@@ -34,7 +34,6 @@ const pdfSplitter = {
     async downloadPages (pageHref, index) {
             const changedPdfData = await pdfApi.downloadFile(pageHref);
             const filePath = path.join(configParams.LOCAL_FOLDER, 'Page_' + index +'_' +  pageHref);
-            await fs.mkdir(path.dirname(filePath), { recursive: true });
             await fs.writeFile(filePath, changedPdfData.body);
             console.log("Downloaded: " + filePath);
         },
